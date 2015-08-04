@@ -34,20 +34,17 @@ public class SupportedFunctions {
             case PLUS:
                 return firstNumber + secondNumber;
             case MINUS:
-                return firstNumber - secondNumber;
+                return secondNumber - firstNumber;
             case MULTIPLICATION:
                 return firstNumber * secondNumber;
             case DIVISION:
-                return firstNumber / secondNumber;
+                return secondNumber / firstNumber;
             default:
                 throw new Exception(); // not supported function
         }
     }
 
     public static boolean isOperator (String op) {
-        if (OPERATORS.contains(op))
-            return true;
-        else
-            return false;
+        return OPERATORS.contains(op);
     }
 }

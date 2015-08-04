@@ -3,6 +3,7 @@ import java.util.ArrayDeque;
 
 /**
  * Created by Aleksandra on 30.07.15.
+ * Based on Dijkstra's shunting yard algorithm
  */
 public class Parser {
 

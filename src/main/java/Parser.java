@@ -11,10 +11,10 @@ public class Parser {
     private ArrayDeque<Double> numbers;
     private ArrayDeque<String> operators;
 
-    public double evaluate(String strMathExptreession) {
+    public double evaluate(String strMathExpreession) throws UnclosedParenthesisException {
         numbers = new ArrayDeque<>();
         operators = new ArrayDeque<>();
-        exprResidual = new StringBuilder("(" + strMathExptreession + ")");
+        exprResidual = new StringBuilder(strMathExpreession);
 
         while (exprResidual.length() != 0) {
             if (Character.isDigit(exprResidual.charAt(0))) {
@@ -37,8 +37,12 @@ public class Parser {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                }
+                exprResidual.delete(0, 1);
+                if (operators.isEmpty()) {
+                    throw new UnclosedParenthesisException();
+                } else {
                     operators.pop();
-                    exprResidual.delete(0, 1);
                 }
                 continue;
             }
@@ -60,6 +64,9 @@ public class Parser {
         }
 
         while (!operators.isEmpty()) {
+
+            if (operators.getFirst().equals(SupportedFunctions.LEFT_BRACKET))
+                throw new UnclosedParenthesisException();
             try {
                 numbers.addLast(SupportedFunctions.calculate(numbers.pop(), numbers.pop(), operators.pop()));
             } catch (Exception e) {

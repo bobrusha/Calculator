@@ -25,7 +25,7 @@ public class SupportedFunctions {
             case RIGHT_BRACKET:
                 return 3;
             default:
-                throw (new Exception()); // not supported func
+                throw (new NotSupportedFunctionException()); // not supported func
         }
     }
 
@@ -40,7 +40,7 @@ public class SupportedFunctions {
             case DIVISION:
                 return secondNumber / firstNumber;
             default:
-                throw new Exception(); // not supported function
+                throw new NotSupportedFunctionException(); // not supported function
         }
     }
 
